@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f6fb">
+  <meta name="description" content="韓國三人旅遊分帳：韓元、台幣、代墊、彈性分攤及即時同步。">
+  <title>Seoul Split｜韓國旅遊分帳</title>
+  <style>
+:root{--ink:#20213b;--muted:#85869e;--purple:#6757cf;--purple-d:#5144b8;--line:#e9e8f0;--page:#f6f6fb;--white:#fff;--pink:#f9dce9;--shadow:0 10px 35px rgba(49,40,111,.07);font-family:Inter,"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}a{color:inherit;text-decoration:none}input,select{color:var(--ink)}input:focus,select:focus,button:focus-visible{outline:3px solid #a99bf1;outline-offset:2px}[hidden]{display:none!important}.app-shell{max-width:1040px;margin:0 auto;padding:0 28px 45px}.header{display:flex;align-items:center;justify-content:space-between;height:85px}.brand{display:flex;align-items:center;gap:12px;font-size:17px;letter-spacing:.6px;font-weight:850;line-height:1.05}.brand b{color:var(--purple)}.brand small{display:block;color:#9595ad;font-size:8px;letter-spacing:3px;margin-top:7px}.brand-symbol{width:41px;height:41px;display:grid;place-content:center;background:#ded7fa;border-radius:14px;font-size:25px;font-weight:850;color:#5e4ac5;position:relative}.brand-symbol span{color:#f26ea1;font-size:14px;position:absolute;right:2px;top:0}.header-actions{display:flex;align-items:center;gap:12px}.sync-pill{font-weight:700;font-size:12px;color:#50866a;background:#e8f7ee;border:1px solid #c9e5d5;padding:8px 11px;border-radius:30px}.sync-pill.demo{color:#9d7138;background:#fff4e4;border-color:#f3e2cb}.sync-pill.error{color:#c13f64;background:#ffe8ef;border-color:#fad1dc}.icon-btn,.close-btn{background:white;border:1px solid var(--line);border-radius:13px;width:38px;height:38px;display:grid;place-items:center;font-size:20px;color:#6e6b91}.mode-banner{border-radius:14px;background:#fff8e8;border:1px solid #f1d5a3;color:#87571d;padding:12px 16px;font-size:13px;line-height:1.7;margin-bottom:16px}.mode-banner strong{font-weight:800}.mode-banner a{font-weight:800;text-decoration:underline}.hero{position:relative;overflow:hidden;color:white;min-height:251px;padding:27px 34px 25px;background:linear-gradient(105deg,#5c50bd 0%,#8b78df 61%,#bd8edb 100%);border-radius:24px;box-shadow:0 13px 35px rgba(103,85,203,.2)}.hero-decoration{position:absolute;border:1px solid rgba(255,255,255,.23);border-radius:50%;pointer-events:none}.deco1{width:480px;height:480px;right:-155px;top:-298px;box-shadow:0 0 0 42px rgba(255,255,255,.055),0 0 0 90px rgba(255,255,255,.035)}.deco2{width:130px;height:130px;left:60%;bottom:-100px;box-shadow:0 0 0 28px rgba(255,255,255,.04)}.hero-top,.hero-bottom{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between}.hero-kicker{font-size:10px;letter-spacing:2.4px;font-weight:800;color:#efdcff}.flight{font-size:10px;font-weight:800;letter-spacing:1px;color:#f9edff}.flight span{font-size:18px;margin:0 7px}.hero h1{position:relative;z-index:1;font-size:clamp(26px,4vw,34px);margin:27px 0 9px;letter-spacing:.6px;font-weight:850}.hero p{position:relative;z-index:1;margin:0 0 23px;font-size:13px;color:#f8edff}.hero-avatars{display:flex;align-items:center;padding-left:4px}.avatar{display:inline-grid;place-items:center;flex:none;width:37px;height:37px;border:3px solid white;margin-left:-4px;border-radius:50%;font-size:13px;font-weight:850;background:#fff0de;color:#a85d62}.avatar:nth-child(2){background:#e5f8f0;color:#488b7d}.avatar:nth-child(3){background:#e8e1ff;color:#7364ad}.share-btn{position:relative;z-index:1;color:white;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.45);border-radius:13px;padding:10px 15px;font-size:12px;font-weight:800;backdrop-filter:blur(5px)}.share-btn:hover{background:rgba(255,255,255,.3)}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:21px}.stat{background:white;border-radius:18px;padding:22px 23px;box-shadow:var(--shadow);border:1px solid #f1f0f7}.stat-label{display:flex;align-items:center;justify-content:space-between;color:#77778f;font-size:12px;font-weight:700}.stat-icon{font-size:21px}.stat-number{font-size:clamp(21px,3vw,29px);font-weight:850;margin:14px 0 5px;letter-spacing:-.7px;font-variant-numeric:tabular-nums;white-space:nowrap}.stat-foot{color:#9a99ab;font-size:11px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:29px 0 19px}.view-tabs{background:#ededf6;display:inline-flex;padding:5px;border-radius:14px;gap:3px}.view-tabs button{white-space:nowrap;padding:11px 20px;border:0;background:transparent;font-weight:800;font-size:13px;color:#9290a9;border-radius:11px}.view-tabs button.active{color:var(--purple-d);background:white;box-shadow:0 3px 9px rgba(37,37,73,.08)}.primary-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border:0;background:var(--purple);color:white;border-radius:12px;font-weight:800;font-size:13px;box-shadow:0 6px 15px rgba(98,83,211,.2)}.primary-btn:hover{background:var(--purple-d)}.outline-btn{border:1px solid #dcd9ea;background:white;color:#635d86;border-radius:12px;padding:12px 22px;font-weight:800;font-size:13px}.panel{background:#fff;border:1px solid #f0eff6;border-radius:21px;box-shadow:var(--shadow);padding:24px;margin-bottom:17px}.panel-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:21px}.panel-header h2{font-size:17px;margin:0}.panel-header .sub{font-size:12px;color:var(--muted);margin:6px 0 0}.mini-btn{background:#f2f0ff;color:#6956ce;border:0;border-radius:10px;padding:9px 13px;font-weight:800;font-size:11px}.record-list{display:flex;flex-direction:column;gap:12px}.record-row{display:grid;grid-template-columns:43px minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid #f3f1f7}.record-row:last-child{border:0}.category-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#f4f0ff;font-size:20px}.record-title{font-size:14px;font-weight:800;word-break:break-word}.record-meta{color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5}.record-money{text-align:right;white-space:nowrap}.record-money strong{font-size:15px}.record-money small{display:block;font-size:11px;color:#9e9baf;margin-top:4px}.icon-menu{background:transparent;border:0;color:#b1aabc;border-radius:8px;font-size:21px;padding:3px 9px}.member-list{display:flex;flex-direction:column;gap:13px}.member-line{display:flex;align-items:center;gap:12px}.member-line .avatar{margin:0;border:0}.member-name{font-size:13px;font-weight:800;min-width:60px}.member-bar-wrap{flex:1;height:9px;background:#f1eff9;border-radius:30px;overflow:hidden}.member-bar{height:100%;background:linear-gradient(90deg,#a99aed,#7060d4);border-radius:30px}.member-value{font-size:12px;font-weight:850;min-width:90px;text-align:right}.columns{display:grid;grid-template-columns:1.3fr .8fr;gap:17px}.empty-state{text-align:center;padding:35px 18px;color:var(--muted)}.empty-state .empty-icon{font-size:42px}.empty-state h3{color:var(--ink);font-size:18px;margin:14px 0 8px}.empty-state p{font-size:13px;line-height:1.7}.empty-state button{margin-top:14px}.settlement-top{padding:17px 21px;border-radius:15px;background:linear-gradient(100deg,#f2eeff,#fbf1f7);font-size:13px;color:#76689c;line-height:1.7;margin-bottom:19px}.settlement-card{display:flex;gap:16px;align-items:center;padding:17px;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;flex-wrap:wrap}.settlement-path{display:flex;align-items:center;gap:7px;flex:1;min-width:190px;font-weight:800;font-size:14px}.settlement-path .arrow{color:#a9a3be;font-size:23px}.settlement-amount{text-align:right}.settlement-amount strong{display:block;font-size:18px;color:var(--purple-d)}.settlement-amount small{display:block;font-size:11px;color:var(--muted);margin-top:5px}.balance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.balance-tile{padding:16px 14px;border:1px solid var(--line);border-radius:14px}.balance-tile .avatar{margin:0;border:0;width:32px;height:32px}.balance-tile .name{font-weight:800;margin:10px 0;font-size:13px}.balance-tile .num{font-size:17px;font-weight:900;white-space:nowrap}.balance-tile .num.positive{color:#229d7a}.balance-tile .num.negative{color:#d56a77}.balance-tile .note{font-size:11px;color:var(--muted);margin-top:6px}.section-note{font-size:12px;color:var(--muted);line-height:1.9}.category-list{display:flex;flex-direction:column;gap:18px}.category-line{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;margin-bottom:8px}.category-line small{color:#8f8ba7;font-size:12px}.category-track{height:8px;background:#f0eff7;border-radius:30px;overflow:hidden}.category-fill{height:100%;background:#8f7ce4;border-radius:30px}.footer{text-align:center;font-size:10px;letter-spacing:1px;color:#aba8bb;padding:20px 0 5px}.floating-add{display:none}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(30px);opacity:0;transition:.2s;background:#26213f;color:white;padding:12px 19px;border-radius:12px;box-shadow:0 10px 25px #2b245b42;z-index:1000;font-size:13px;font-weight:700;max-width:90%;pointer-events:none}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.loading{padding:65px;text-align:center;color:#908cac}
+.sheet-dialog{border:none;padding:0;border-radius:24px;background:white;color:var(--ink);width:min(610px,calc(100vw - 28px));max-height:min(88vh,830px);box-shadow:0 30px 90px #2620524f;overflow:hidden}.sheet-dialog::backdrop{background:rgba(25,20,54,.54);backdrop-filter:blur(3px)}.dialog-form{display:flex;flex-direction:column;max-height:min(88vh,830px)}.dialog-heading{display:flex;align-items:center;justify-content:space-between;padding:24px 26px 16px;border-bottom:1px solid #f0edf6}.eyebrow{color:#9d8adc;letter-spacing:2px;font-size:10px;font-weight:900}.dialog-heading h2{margin:6px 0 0;font-size:22px}.close-btn{width:36px;height:36px;font-size:16px}.dialog-scroll{padding:20px 26px;overflow-y:auto;flex:1}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.form-grid label,.form-label,.members-editor label{display:flex;flex-direction:column;gap:8px}.form-grid label span,.form-label span,.members-editor label span{font-size:12px;font-weight:800;color:#625e7f}.form-grid input,.form-grid select,.form-label input,.members-editor input,.identity-box select{width:100%;min-width:0;border:1px solid #e2deef;background:#fbfaff;border-radius:11px;padding:12px 12px;font-size:14px}.form-grid .full{grid-column:span 2}.section-title{display:flex;align-items:center;justify-content:space-between}.split-section{margin-top:25px}.split-section h3,.members-editor h3{font-size:15px;margin:0 0 15px}.split-section small{color:var(--muted);font-size:11px}.member-checks{display:flex;gap:9px;flex-wrap:wrap}.member-checks label{display:flex;gap:7px;align-items:center;background:#f8f6ff;padding:10px 13px;border-radius:11px;border:1px solid #e8e3fa;font-size:12px;font-weight:750}.member-checks input{accent-color:var(--purple)}.split-mode-title{margin-top:25px!important}.segmented{display:flex;gap:5px;background:#f1effa;padding:5px;border-radius:12px}.segmented label{flex:1;text-align:center;cursor:pointer}.segmented input{position:absolute;opacity:0;pointer-events:none}.segmented span{display:block;padding:10px 3px;color:#8f89a4;border-radius:9px;font-size:12px;font-weight:800}.segmented input:checked+span{background:white;color:var(--purple-d);box-shadow:0 3px 8px #554d8e1a}.segmented input:focus-visible+span{outline:3px solid #a99bf1}.split-fields{margin-top:14px}.split-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.split-grid label{display:flex;flex-direction:column;gap:7px;font-size:11px;font-weight:800;color:#66617e}.split-grid input{width:100%;border:1px solid #e1deed;border-radius:9px;padding:11px 9px;background:#fcfbff;font-size:13px}.split-preview{margin-top:16px;border-radius:13px;background:#f5f2ff;color:#6555a9;font-size:12px;padding:14px 15px;line-height:1.9}.split-preview.error{background:#fff0f2;color:#be5d73}.dialog-footer{display:flex;justify-content:flex-end;gap:10px;padding:17px 26px 22px;border-top:1px solid #f0edf6}.helper{font-size:12px;color:#87839a;line-height:1.85;margin:2px 0 18px}.form-label{margin:14px 0 21px}.members-editor{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:13px 0 22px}.members-editor h3{grid-column:span 3;margin-bottom:0}.identity-box{background:#f5f2ff;border-radius:12px;padding:15px;display:grid;gap:10px;font-size:12px;font-weight:750}.identity-box select{background:white}
+@media(max-width:760px){.app-shell{padding:0 15px 70px}.header{height:70px}.brand{font-size:14px}.brand-symbol{width:37px;height:37px}.hero{padding:24px 22px 23px;min-height:226px;border-radius:19px}.hero h1{font-size:25px;margin:26px 0 10px}.hero p{font-size:12px}.hero-kicker{font-size:9px}.flight{font-size:9px}.flight span{margin:0 2px}.stats{gap:9px;margin-top:13px}.stat{padding:16px 13px;border-radius:15px}.stat-label{font-size:11px}.stat-icon{font-size:16px}.stat-number{font-size:clamp(15px,4vw,22px);letter-spacing:-.6px;margin:12px 0 6px}.stat-foot{font-size:10px}.toolbar{margin:20px 0 13px}.view-tabs{width:100%}.view-tabs button{flex:1;padding:11px 3px;font-size:12px}.desktop-add{display:none}.panel{padding:17px;border-radius:17px}.columns{grid-template-columns:1fr;gap:0}.record-row{grid-template-columns:40px minmax(0,1fr) auto auto;gap:8px}.category-icon{width:39px;height:39px}.record-title{font-size:12px}.record-meta{font-size:10px}.record-money strong{font-size:13px}.record-money small{font-size:10px}.floating-add{display:grid;position:fixed;right:22px;bottom:calc(22px + env(safe-area-inset-bottom));width:59px;height:59px;border-radius:19px;background:var(--purple);color:white;border:0;box-shadow:0 10px 26px #6757cf6b;font-size:34px;z-index:20;place-content:center}.balance-grid{gap:6px}.balance-tile{padding:12px 9px}.balance-tile .num{font-size:clamp(12px,3.7vw,18px)}.balance-tile .name{font-size:12px}.settlement-amount{text-align:left}.mode-banner{font-size:12px}.sheet-dialog{max-height:94dvh;width:100vw;max-width:none;margin:auto 0 0;border-radius:23px 23px 0 0}.dialog-form{max-height:94dvh}.dialog-heading{padding:19px 19px 15px}.dialog-scroll{padding:17px 19px}.dialog-footer{padding:13px 19px calc(17px + env(safe-area-inset-bottom))}.form-grid{gap:12px}.form-grid input,.form-grid select{font-size:13px}.members-editor{gap:8px}.members-editor input{padding:10px 5px;font-size:12px}.split-grid{gap:6px}.split-grid input{font-size:12px;padding:9px 6px}.split-grid label{font-size:10px}.footer{margin-top:15px}}
+@media(max-width:370px){.hero{padding:22px 17px}.stats{gap:6px}.stat{padding:13px 9px}.stat-label{font-size:10px}.stat-number{font-size:15px}.view-tabs button{font-size:11px}.record-row{grid-template-columns:35px minmax(0,1fr) auto auto;gap:6px}.category-icon{width:34px;height:34px}.record-money strong{font-size:12px}}
+
+</style>
+  <script>
+/** Seoul Split Firebase Web setup: public project identifiers, NOT admin secrets. */
+window.SEOUL_SPLIT_FIREBASE = {
+  apiKey: "AIzaSyBUBfYPMZ2BE2SbGouX1VBqI0GSFudFuLU",
+  authDomain: "seoul-split.firebaseapp.com",
+  projectId: "seoul-split",
+  storageBucket: "seoul-split.firebasestorage.app",
+  messagingSenderId: "346790716295",
+  appId: "1:346790716295:web:edae57905cfbe9eb30e922"
+};
+
+</script>
+  <script type="module">
+// ----- calculator.mjs -----
+/**
+ * Seoul Split - pure, dependency-free financial functions.
+ * Accounting is always in integer TWD cents, using a FX rate stored per expense.
+ */
+const MEMBER_IDS = ["a", "b", "c"];
+
+function validRate(rate) {
+  const n = Number(rate);
+  return Number.isFinite(n) && n > 0 && n < 10;
+}
+
+function toMinor(amount, currency) {
+  const n = Number(amount);
+  if (!Number.isFinite(n) || n <= 0) throw new Error("請輸入大於 0 的金額。");
+  if (currency === "KRW") {
+    if (!Number.isInteger(n)) throw new Error("韓元請輸入整數金額。");
+    if (n > 1000000000) throw new Error("單筆金額過大。");
+    return n;
+  }
+  if (currency === "TWD") {
+    const cents = Math.round(n * 100);
+    if (Math.abs(n * 100 - cents) > 0.00001) throw new Error("台幣最多輸入小數點後兩位。");
+    if (cents > 100000000000) throw new Error("單筆金額過大。");
+    return cents;
+  }
+  throw new Error("未知幣別。");
+}
+
+function totalTwdCents(amount, currency, rate) {
+  const minor = toMinor(amount, currency);
+  if (!validRate(rate)) throw new Error("匯率必須大於 0 且小於 10。");
+  return currency === "KRW" ? Math.round(minor * Number(rate) * 100) : minor;
+}
+
+/** Sum-preserving weighted allocation (largest remainders, deterministic ties). */
+function allocateCents(total, ids, weights) {
+  if (!Number.isSafeInteger(total) || total < 0) throw new Error("金額格式錯誤。");
+  const weightSum = ids.reduce((a, id) => a + Number(weights[id] || 0), 0);
+  if (!(weightSum > 0)) throw new Error("至少需要一位分攤者。");
+  const raw = ids.map((id, i) => ({ id, i, raw: total * Number(weights[id] || 0) / weightSum }));
+  if (raw.some(x => !Number.isFinite(x.raw) || x.raw < 0)) throw new Error("分攤比例不可為負數。");
+  const allocated = raw.map(x => ({ ...x, cents: Math.floor(x.raw) }));
+  let remain = total - allocated.reduce((a, b) => a + b.cents, 0);
+  const ranked = [...allocated].sort((a, b) => (b.raw - Math.floor(b.raw)) - (a.raw - Math.floor(a.raw)) || a.i - b.i);
+  for (let j = 0; j < remain; j++) ranked[j].cents++;
+  return Object.fromEntries(allocated.map(({ id, cents }) => [id, cents]));
+}
+
+/**
+ * @param {object} input - {amount,currency,rate,payerId,selectedIds,splitType,values}
+ * splitType = equal | percent | exact; exact values use expense's ORIGINAL currency.
+ */
+function splitExpense(input) {
+  const { amount, currency, rate, payerId, selectedIds, splitType, values = {} } = input;
+  const total = totalTwdCents(amount, currency, rate);
+  if (!MEMBER_IDS.includes(payerId)) throw new Error("請選擇付款人。");
+  const ids = MEMBER_IDS.filter(id => selectedIds.includes(id));
+  if (!ids.length) throw new Error("請至少選擇一位分攤者。");
+  let weights = {};
+  if (splitType === "equal") {
+    weights = Object.fromEntries(ids.map(id => [id, 1]));
+  } else if (splitType === "percent") {
+    weights = Object.fromEntries(ids.map(id => [id, Number(values[id])]));
+    if (ids.some(id => !Number.isFinite(weights[id]) || weights[id] < 0)) throw new Error("百分比不可為負數。");
+    const sum = ids.reduce((a, id) => a + weights[id], 0);
+    if (Math.abs(sum - 100) > 0.001) throw new Error(`百分比總和必須為 100%（目前 ${sum.toFixed(2)}%）。`);
+  } else if (splitType === "exact") {
+    const targetMinor = toMinor(amount, currency);
+    const minorValues = ids.map(id => {
+      const n = Number(values[id]);
+      if (!Number.isFinite(n) || n < 0) throw new Error("指定金額不可為負數。");
+      if (currency === "KRW" && !Number.isInteger(n)) throw new Error("韓元指定金額必須是整數。");
+      const minor = currency === "KRW" ? n : Math.round(n * 100);
+      if (currency === "TWD" && Math.abs(n * 100 - minor) > 0.00001) throw new Error("台幣指定金額最多兩位小數。");
+      return minor;
+    });
+    const sumMinor = minorValues.reduce((a, b) => a + b, 0);
+    if (sumMinor !== targetMinor) throw new Error("指定分攤金額的合計必須等於消費總額。");
+    weights = Object.fromEntries(ids.map((id, i) => [id, minorValues[i]]));
+  } else {
+    throw new Error("未知的分攤方式。");
+  }
+  const sharesTwdCents = Object.fromEntries(MEMBER_IDS.map(id => [id, 0]));
+  Object.assign(sharesTwdCents, allocateCents(total, ids, weights));
+  return { totalTwdCents: total, sharesTwdCents };
+}
+
+function calculateBalances(expenses, members = MEMBER_IDS) {
+  const ids = members.map(m => typeof m === "string" ? m : m.id);
+  const ledger = Object.fromEntries(ids.map(id => [id, { paid: 0, owed: 0, net: 0 }]));
+  for (const ex of expenses) {
+    if (!ledger[ex.payerId] || !Number.isSafeInteger(ex.totalTwdCents)) continue;
+    ledger[ex.payerId].paid += ex.totalTwdCents;
+    for (const id of ids) ledger[id].owed += Number(ex.sharesTwdCents?.[id] || 0);
+  }
+  for (const id of ids) ledger[id].net = ledger[id].paid - ledger[id].owed;
+  const transfers = settle(ledger);
+  return { ledger, transfers, total: expenses.reduce((sum, e) => sum + (e.totalTwdCents || 0), 0) };
+}
+
+function settle(ledger) {
+  const creditors = Object.entries(ledger).filter(([, v]) => v.net > 0).map(([id, v]) => ({ id, amount: v.net }));
+  const debtors = Object.entries(ledger).filter(([, v]) => v.net < 0).map(([id, v]) => ({ id, amount: -v.net }));
+  creditors.sort((a, b) => b.amount - a.amount || a.id.localeCompare(b.id));
+  debtors.sort((a, b) => b.amount - a.amount || a.id.localeCompare(b.id));
+  const transfers = [];
+  let i = 0, j = 0;
+  while (i < debtors.length && j < creditors.length) {
+    const amountTwdCents = Math.min(debtors[i].amount, creditors[j].amount);
+    if (amountTwdCents > 0) transfers.push({ from: debtors[i].id, to: creditors[j].id, amountTwdCents });
+    debtors[i].amount -= amountTwdCents;
+    creditors[j].amount -= amountTwdCents;
+    if (!debtors[i].amount) i++;
+    if (!creditors[j].amount) j++;
+  }
+  return transfers;
+}
+
+function twd(cents) {
+  const n = Number(cents || 0) / 100;
+  return `NT$${new Intl.NumberFormat("zh-TW", { minimumFractionDigits: n % 1 === 0 ? 0 : 2, maximumFractionDigits: 2 }).format(n)}`;
+}
+function originalMoney(amount, currency) {
+  return currency === "KRW"
+    ? `₩${new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 }).format(Number(amount))}`
+    : `NT$${new Intl.NumberFormat("zh-TW", { maximumFractionDigits: 2 }).format(Number(amount))}`;
+}
+function krwEstimate(cents, rate) {
+  return `約 ₩${new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 }).format((cents / 100) / Number(rate))}`;
+}
+
+
+// ----- local-service.mjs -----
+const key = id => `seoul-split:room:${id}`;
+function localService() {
+  let active = null;
+  let onRoom, onExpenses;
+  const read = id => { try { return JSON.parse(localStorage.getItem(key(id))); } catch { return null; } };
+  const write = (id, state) => localStorage.setItem(key(id), JSON.stringify(state));
+  const notify = () => { const state = read(active); if (state) { onRoom(state.room); onExpenses(state.expenses); } };
+  window.addEventListener("storage", e => { if (e.key === key(active)) notify(); });
+  return {
+    mode: "local",
+    async create(id, room) { write(id, { room, expenses: [] }); },
+    subscribe(id, r, e, onError) {
+      active = id; onRoom = r; onExpenses = e;
+      const state = read(id);
+      if (!state) { onError(new Error("這份帳本不在這支裝置上。離線版不能透過分享網址跨裝置使用。")); return () => {}; }
+      notify(); return () => {};
+    },
+    async updateRoom(id, patch) { const s = read(id); s.room = { ...s.room, ...patch }; write(id, s); notify(); },
+    async saveExpense(id, expense) { const s = read(id); s.expenses = s.expenses.filter(x => x.id !== expense.id).concat(expense); write(id, s); notify(); },
+    async deleteExpense(id, expenseId) { const s = read(id); s.expenses = s.expenses.filter(x => x.id !== expenseId); write(id, s); notify(); }
+  };
+}
+
+
+// ----- firebase-service.mjs -----
+/** Firebase is loaded only when config.js contains an actual Firebase project. */
+async function firebaseService(config) {
+  const base = "https://www.gstatic.com/firebasejs/11.10.0/";
+  const [{ initializeApp }, { getAuth, signInAnonymously }, firestore] = await Promise.all([
+    import(base + "firebase-app.js"),
+    import(base + "firebase-auth.js"),
+    import(base + "firebase-firestore.js")
+  ]);
+  const app = initializeApp(config);
+  await signInAnonymously(getAuth(app));
+  const db = firestore.getFirestore(app);
+  const roomRef = id => firestore.doc(db, "rooms", id);
+  const expenseRef = (roomId, id) => firestore.doc(db, "rooms", roomId, "expenses", id);
+  return {
+    mode: "cloud",
+    async create(roomId, room) { await firestore.setDoc(roomRef(roomId), room); },
+    subscribe(roomId, onRoom, onExpenses, onError) {
+      const u1 = firestore.onSnapshot(roomRef(roomId), s => {
+        if (!s.exists()) { onError(new Error("找不到這個旅遊帳本，請確認邀請網址。")); return; }
+        onRoom(s.data());
+      }, onError);
+      const u2 = firestore.onSnapshot(firestore.collection(db, "rooms", roomId, "expenses"), snap => {
+        onExpenses(snap.docs.map(d => ({ ...d.data(), id: d.id })));
+      }, onError);
+      return () => { u1(); u2(); };
+    },
+    async updateRoom(roomId, patch) { await firestore.updateDoc(roomRef(roomId), patch); },
+    async saveExpense(roomId, expense) { await firestore.setDoc(expenseRef(roomId, expense.id), expense); },
+    async deleteExpense(roomId, id) { await firestore.deleteDoc(expenseRef(roomId, id)); }
+  };
+}
+
+
+// ----- app.mjs -----
+
+const CATEGORIES = {
+  food: ["🍜", "餐飲"], transport: ["🚕", "交通"], hotel: ["🏨", "住宿"],
+  shopping: ["🛍️", "購物"], activity: ["🎟️", "景點門票"], other: ["🧾", "其他"]
+};
+const $ = (selector) => document.querySelector(selector);
+const safe = (value) => String(value ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const state = { mode: "local", store: null, roomId: "", room: null, expenses: [], tab: "overview", editId: null, identity: "a", unsub: null };
+const memberName = id => state.room?.members?.find(m => m.id === id)?.name || id;
+const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; };
+const id22 = () => { const bytes = new Uint8Array(16); crypto.getRandomValues(bytes); return btoa(String.fromCharCode(...bytes)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,""); };
+const names = () => Object.fromEntries(MEMBER_IDS.map(id => [id, memberName(id)]));
+const avatar = (id) => `<span class="avatar" title="${safe(memberName(id))}">${safe(memberName(id).slice(0, 1))}</span>`;
+const itemCat = id => CATEGORIES[id] || CATEGORIES.other;
+let toastTimeout;
+function toast(message) { const el = $("#toast"); el.textContent = message; el.classList.add("show"); clearTimeout(toastTimeout); toastTimeout = setTimeout(() => el.classList.remove("show"), 3400); }
+function errorMessage(e) { console.error(e); toast(`操作未完成：${e?.message || "請檢查網路或權限設定"}`); }
+function demoConfig() {
+  const c = window.SEOUL_SPLIT_FIREBASE || {};
+  return ["apiKey", "projectId", "appId", "authDomain"].every(k => typeof c[k] === "string" && c[k].length > 8 && !c[k].startsWith("PASTE_"));
+}
+function newRoom() { return { title: "三個人的首爾旅行", members: [ { id: "a", name: "我" }, { id: "b", name: "旅伴 B" }, { id: "c", name: "旅伴 C" } ], fxRate: 0.023, createdAt: Date.now() }; }
+
+async function start() {
+  const configured = demoConfig();
+  state.mode = configured ? "cloud" : "local";
+  try { state.store = configured ? await firebaseService(window.SEOUL_SPLIT_FIREBASE) : localService(); }
+  catch (err) { $("#view").innerHTML = `<div class="panel empty-state"><h3>無法連上 Firebase</h3><p>${safe(err.message)}</p><p>確認已開啟匿名登入，以及 Firebase 專案設定與網路連線。</p></div>`; setStatus("error", "⚠ 連線失敗"); return; }
+  const url = new URL(location.href);
+  let roomId = url.searchParams.get("room");
+  if (roomId && !/^[A-Za-z0-9_-]{22}$/.test(roomId)) { $("#view").textContent = "邀請網址格式不正確。"; return; }
+  try {
+    if (!roomId) {
+      roomId = id22();
+      await state.store.create(roomId, newRoom());
+      url.searchParams.set("room", roomId);
+      history.replaceState({}, "", url);
+    }
+    state.roomId = roomId;
+    state.identity = localStorage.getItem(`seoul-split:identity:${roomId}`) || "a";
+    state.unsub = state.store.subscribe(roomId,
+      room => { state.room = room; render(); },
+      expenses => { state.expenses = expenses; render(); },
+      err => { errorMessage(err); setStatus("error", "⚠ 同步異常"); $("#view").innerHTML = `<div class="panel empty-state"><h3>目前無法讀取帳本</h3><p>${safe(err.message)}</p><p>請確認 Firebase 安全性規則、匿名登入和邀請網址。</p></div>`; });
+    updateBanner();
+  } catch (err) { errorMessage(err); $("#view").innerHTML = `<div class="panel empty-state"><h3>無法建立帳本</h3><p>${safe(err.message)}</p></div>`; }
+}
+function setStatus(kind, title) { const pill = $("#sync-status"); pill.className = `sync-pill ${kind}`; pill.textContent = title; }
+function updateBanner() {
+  const el = $("#mode-banner");
+  if (state.mode === "cloud") { el.hidden = true; return; }
+  el.hidden = false;
+  el.innerHTML = `<strong>🧪 單機試用模式：</strong>帳目只存在這個瀏覽器，其他手機<strong>不會同步</strong>。請依下載檔的 README 啟用 Firebase 並部署到 HTTPS 網址，再正式邀請旅伴。`;
+}
+function render() {
+  if (!state.room) return;
+  setStatus(state.mode === "cloud" ? "cloud" : "demo", state.mode === "cloud" ? "● 雲端同步中" : "◉ 本機試用");
+  $("#trip-title").textContent = state.room.title;
+  $("#hero-avatars").innerHTML = state.room.members.map(m => avatar(m.id)).join("");
+  const result = calculateBalances(state.expenses, state.room.members);
+  $("#stats").innerHTML = `
+    <div class="stat"><div class="stat-label">旅程總支出 <span class="stat-icon">💸</span></div><div class="stat-number">${twd(result.total)}</div><div class="stat-foot">已換算為台幣</div></div>
+    <div class="stat"><div class="stat-label">消費筆數 <span class="stat-icon">🧾</span></div><div class="stat-number">${state.expenses.length} 筆</div><div class="stat-foot">三人共同帳本</div></div>
+    <div class="stat"><div class="stat-label">目前需轉帳 <span class="stat-icon">💌</span></div><div class="stat-number">${result.transfers.length} 筆</div><div class="stat-foot">整合代墊後的筆數</div></div>`;
+  document.querySelectorAll("[data-tab]").forEach(button => {
+    const active = button.dataset.tab === state.tab;
+    button.classList.toggle("active", active); button.setAttribute("aria-selected", active);
+  });
+  $("#view").innerHTML = state.tab === "overview" ? overview(result) : state.tab === "records" ? records() : settlement(result);
+}
+function recordRow(ex) {
+  const [symbol, title] = itemCat(ex.category);
+  return `<div class="record-row">
+    <span class="category-icon" title="${safe(title)}">${symbol}</span>
+    <div><div class="record-title">${safe(ex.note || title)}</div><div class="record-meta">${safe(ex.date)} · ${safe(memberName(ex.payerId))} 付款 · ${safe(title)}</div></div>
+    <div class="record-money"><strong>${safe(originalMoney(ex.amount, ex.currency))}</strong><small>${twd(ex.totalTwdCents)}</small></div>
+    <button class="icon-menu" data-action="record-menu" data-id="${safe(ex.id)}" title="編輯或刪除此紀錄" aria-label="編輯或刪除此紀錄">⋯</button>
+  </div>`;
+}
+const sorted = () => [...state.expenses].sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.createdAt || 0) - (a.createdAt || 0));
+function empty() { return `<div class="empty-state"><div class="empty-icon">🧳</div><h3>旅行帳本還是空的</h3><p>從第一頓韓式料理開始，記下誰付了多少錢。</p><button class="primary-btn" data-action="add">＋ 新增第一筆消費</button></div>`; }
+function overview(result) {
+  const expenses = sorted();
+  const byCategory = Object.fromEntries(Object.keys(CATEGORIES).map(k => [k, 0]));
+  for (const ex of expenses) byCategory[ex.category in byCategory ? ex.category : "other"] += ex.totalTwdCents;
+  const bars = Object.entries(byCategory).filter(([, v]) => v > 0).sort((a,b) => b[1]-a[1]);
+  const max = Math.max(1, ...bars.map(x => x[1]));
+  return `<div class="columns"><section class="panel"><div class="panel-header"><div><h2>最新消費 <span aria-hidden="true">✨</span></h2><p class="sub">每天花的錢，都有跡可循</p></div><button class="mini-btn" data-action="all-records">查看全部 →</button></div>
+  ${expenses.length ? `<div class="record-list">${expenses.slice(0, 5).map(recordRow).join("")}</div>` : empty()}</section>
+  <section class="panel"><div class="panel-header"><div><h2>旅費分類</h2><p class="sub">一眼看懂錢花在哪裡</p></div></div>
+  ${bars.length ? `<div class="category-list">${bars.map(([k, v]) => `<div><div class="category-line"><span>${itemCat(k)[0]} ${itemCat(k)[1]}</span><small>${twd(v)}</small></div><div class="category-track"><div class="category-fill" style="width:${v / max * 100}%"></div></div></div>`).join("")}</div>` : `<div class="empty-state"><div class="empty-icon">📊</div><p>記帳後這裡會自動顯示分類統計</p></div>`}
+  </section></div>`;
+}
+function records() {
+  return `<section class="panel"><div class="panel-header"><div><h2>全部消費明細</h2><p class="sub">共 ${state.expenses.length} 筆，按消費日期排序</p></div><button class="mini-btn" data-action="export">↓ 匯出 CSV</button></div>
+  ${state.expenses.length ? `<div class="record-list">${sorted().map(recordRow).join("")}</div>` : empty()}</section>`;
+}
+function settlement(result) {
+  const transfers = result.transfers;
+  const tiles = state.room.members.map(member => {
+    const data = result.ledger[member.id]; const positive = data.net >= 0;
+    return `<div class="balance-tile">${avatar(member.id)}<div class="name">${safe(member.name)}</div><div class="num ${positive ? "positive" : "negative"}">${data.net > 0 ? "+" : data.net < 0 ? "−" : ""}${twd(Math.abs(data.net))}</div><div class="note">${data.net > 0 ? "應收回" : data.net < 0 ? "應付出" : "已平衡"}</div></div>`;
+  }).join("");
+  return `<section class="panel"><div class="panel-header"><div><h2>最簡結算清單 💌</h2><p class="sub">把所有代墊加總，減少互相轉帳的次數</p></div><button class="mini-btn" data-action="copy-settlement">複製結算</button></div>
+    <div class="settlement-top">以每筆消費記錄的匯率換算台幣，台幣金額為正式結算基準；韓元金額僅依目前預設匯率估算，實際付款仍以雙方確認為準。</div>
+    ${transfers.length ? transfers.map(t => `<div class="settlement-card"><div class="settlement-path">${avatar(t.from)}<span>${safe(memberName(t.from))}</span><span class="arrow">→</span>${avatar(t.to)}<span>${safe(memberName(t.to))}</span></div><div class="settlement-amount"><strong>${twd(t.amountTwdCents)}</strong><small>${krwEstimate(t.amountTwdCents, state.room.fxRate)}（參考）</small></div></div>`).join("") : `<div class="empty-state"><div class="empty-icon">🎉</div><h3>目前沒有需要轉帳的金額</h3><p>${state.expenses.length ? "大家的收支已經平衡。" : "先新增消費，系統就會自動產生結算清單。"}</p></div>`}
+  </section><section class="panel"><div class="panel-header"><div><h2>每位旅伴的收支</h2><p class="sub">應收＝已代墊 − 自己應負擔</p></div></div><div class="balance-grid">${tiles}</div>
+  <p class="section-note">這是尚未登記實際轉帳的應收／應付清單。第一版沒有「已付款確認」功能，請勿把同一筆轉帳重複結算。數字採整數分配，尾差會自動補給其中一位分攤者。</p></section>`;
+}
+function selectedIds() { return [...document.querySelectorAll('#member-checks input:checked')].map(el => el.value); }
+function formData() {
+  const form = $("#expense-form");
+  const splitType = form.querySelector('input[name="splitType"]:checked')?.value || "equal";
+  const values = Object.fromEntries([...form.querySelectorAll("[data-share-id]")].map(input => [input.dataset.shareId, Number(input.value)]));
+  return {
+    note: form.elements.note.value.trim(), date: form.elements.date.value, category: form.elements.category.value,
+    amount: Number(form.elements.amount.value), currency: form.elements.currency.value,
+    rate: Number(form.elements.rateApplied.value), payerId: form.elements.payerId.value,
+    splitType, selectedIds: selectedIds(), values
+  };
+}
+function buildSplitFields() {
+  const { splitType, currency, amount } = formData();
+  const ids = selectedIds();
+  const current = state.editId ? state.expenses.find(x => x.id === state.editId) : null;
+  const initialValues = current?.splitType === splitType ? current.splitValues : {};
+  if (splitType === "equal") {
+    $("#split-fields").innerHTML = "";
+  } else {
+    const totalMinor = currency === "KRW" ? Number(amount) : Math.round(Number(amount) * 100);
+    const isExact = splitType === "exact";
+    const denominator = currency === "KRW" ? 1 : 100;
+    const values = ids.map((id, i) => {
+      if (initialValues && Object.hasOwn(initialValues, id)) return Number(initialValues[id]);
+      const allUnits = isExact ? totalMinor : 10000;
+      const base = Math.floor(allUnits / ids.length);
+      const v = i === ids.length - 1 ? allUnits - (ids.length - 1) * base : base;
+      return isExact ? v / denominator : v / 100;
+    });
+    $("#split-fields").innerHTML = `<div class="split-grid">${ids.map((id, i) => `<label>${safe(memberName(id))} (${isExact ? currency : "%"})<input data-share-id="${id}" type="number" inputmode="decimal" min="0" step="any" value="${Number.isFinite(values[i]) ? values[i] : 0}"></label>`).join("")}</div>`;
+  }
+  updatePreview();
+}
+function updatePreview() {
+  const preview = $("#split-preview");
+  if (!$("#expense-form").elements.amount.value) { preview.className = "split-preview"; preview.textContent = "輸入金額後顯示每人分攤金額"; return; }
+  try {
+    const data = formData();
+    const split = splitExpense(data);
+    preview.className = "split-preview";
+    preview.innerHTML = `<strong>本筆總額 ${twd(split.totalTwdCents)}</strong><div>${data.selectedIds.map(id => `${safe(memberName(id))}：${twd(split.sharesTwdCents[id])}`).join("　·　")}</div>`;
+  } catch (err) { preview.className = "split-preview error"; preview.textContent = err.message; }
+}
+function openExpense(id = null) {
+  if (!state.room) return;
+  state.editId = id;
+  const ex = id ? state.expenses.find(x => x.id === id) : null;
+  $("#expense-form").reset();
+  $("#expense-form-title").textContent = ex ? "編輯消費紀錄" : "新增一筆消費";
+  const form = $("#expense-form");
+  form.elements.note.value = ex?.note || "";
+  form.elements.date.value = ex?.date || today();
+  form.elements.category.value = ex?.category || "food";
+  form.elements.amount.value = ex?.amount ?? "";
+  form.elements.currency.value = ex?.currency || "KRW";
+  form.elements.rateApplied.value = ex?.rateApplied ?? state.room.fxRate;
+  form.elements.payerId.innerHTML = state.room.members.map(m => `<option value="${m.id}">${safe(m.name)}</option>`).join("");
+  form.elements.payerId.value = ex?.payerId || state.identity;
+  const selected = ex?.selectedIds || MEMBER_IDS;
+  $("#member-checks").innerHTML = state.room.members.map(m => `<label><input type="checkbox" name="shareMember" value="${m.id}" ${selected.includes(m.id) ? "checked" : ""}>${safe(m.name)}</label>`).join("");
+  form.querySelector(`input[name="splitType"][value="${ex?.splitType || "equal"}"]`).checked = true;
+  buildSplitFields();
+  $("#expense-dialog").showModal();
+}
+function closeExpense() { $("#expense-dialog").close(); state.editId = null; }
+function openSettings() {
+  if (!state.room) return;
+  const f = $("#settings-form");
+  f.elements.title.value = state.room.title;
+  for (const m of state.room.members) f.elements[`member-${m.id}`].value = m.name;
+  f.elements.fxRate.value = state.room.fxRate;
+  $("#identity-choice").innerHTML = state.room.members.map(m => `<option value="${m.id}">${safe(m.name)}</option>`).join("");
+  $("#identity-choice").value = state.identity;
+  $("#settings-dialog").showModal();
+}
+async function saveExpense(event) {
+  event.preventDefault();
+  const button = $("#expense-submit");
+  try {
+    const data = formData();
+    if (!data.note) throw new Error("請填寫消費項目。");
+    if (!data.date) throw new Error("請選擇日期。");
+    const split = splitExpense(data);
+    const previous = state.editId ? state.expenses.find(x => x.id === state.editId) : null;
+    const expense = {
+      id: previous?.id || id22(), note: data.note, date: data.date, category: data.category,
+      amount: data.amount, currency: data.currency, rateApplied: data.rate, payerId: data.payerId,
+      splitType: data.splitType, selectedIds: data.selectedIds, splitValues: data.values,
+      totalTwdCents: split.totalTwdCents, sharesTwdCents: split.sharesTwdCents,
+      createdAt: previous?.createdAt || Date.now(), updatedAt: Date.now()
+    };
+    button.disabled = true;
+    await state.store.saveExpense(state.roomId, expense);
+    closeExpense(); toast("✓ 消費已成功儲存");
+  } catch (err) { errorMessage(err); } finally { button.disabled = false; }
+}
+async function saveSettings(event) {
+  event.preventDefault();
+  try {
+    const f = $("#settings-form");
+    const title = f.elements.title.value.trim();
+    const members = MEMBER_IDS.map(id => ({ id, name: f.elements[`member-${id}`].value.trim() }));
+    const fxRate = Number(f.elements.fxRate.value);
+    if (!title || members.some(x => !x.name)) throw new Error("請填寫旅程及所有旅伴名稱。");
+    if (!validRate(fxRate)) throw new Error("匯率必須大於 0 且小於 10。");
+    await state.store.updateRoom(state.roomId, { title, members, fxRate });
+    state.identity = f.elements.identityChoice.value;
+    localStorage.setItem(`seoul-split:identity:${state.roomId}`, state.identity);
+    $("#settings-dialog").close(); toast("✓ 旅程設定已更新");
+  } catch (err) { errorMessage(err); }
+}
+function settlementText() {
+  const result = calculateBalances(state.expenses, state.room.members);
+  return [`🇰🇷 ${state.room.title}｜結算明細`, `總消費 ${twd(result.total)}（共 ${state.expenses.length} 筆）`,
+    ...result.transfers.map(t => `${memberName(t.from)} → ${memberName(t.to)}：${twd(t.amountTwdCents)}（${krwEstimate(t.amountTwdCents, state.room.fxRate)}）`),
+    result.transfers.length ? "以台幣為準，韓元為參考值。" : "目前無需互相轉帳。", "Seoul Split"].join("\n");
+}
+async function copy(text) {
+  try { await navigator.clipboard.writeText(text); toast("✓ 已複製到剪貼簿"); }
+  catch { window.prompt("請複製以下內容：", text); }
+}
+function exportCSV() {
+  const headers = ["日期","分類","項目","付款人","原幣金額","幣別","匯率(1KRW=TWD)","折合台幣","分攤方式",...MEMBER_IDS.map(id => `${memberName(id)}分攤台幣`)];
+  const rows = sorted().map(ex => [ex.date,itemCat(ex.category)[1],ex.note,memberName(ex.payerId),ex.amount,ex.currency,ex.rateApplied,(ex.totalTwdCents/100).toFixed(2),ex.splitType,...MEMBER_IDS.map(id => ((ex.sharesTwdCents[id] || 0)/100).toFixed(2))]);
+  // Prevent spreadsheet formula injection on user-controlled text cells.
+  const cell = value => { let str = String(value ?? ""); if (/^[\s]*[=+@\-]/.test(str) && !/^-?\d+(?:\.\d+)?$/.test(str)) str = "'" + str; return `"${str.replace(/"/g,'""')}"`; };
+  const csv = "\ufeff" + [headers, ...rows].map(row => row.map(cell).join(",")).join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" }); const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = `seoul-split-${today()}.csv`; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1500);
+  toast("✓ 已匯出消費 CSV");
+}
+async function action(target) {
+  const name = target.dataset.action;
+  if (name === "settings") return openSettings();
+  if (name === "add") return openExpense();
+  if (name === "close-expense") return closeExpense();
+  if (name === "close-settings") return $("#settings-dialog").close();
+  if (name === "all-records") { state.tab = "records"; render(); return; }
+  if (name === "export") return exportCSV();
+  if (name === "copy-settlement") return copy(settlementText());
+  if (name === "invite") {
+    if (state.mode === "local") { toast("請先設定 Firebase 才能跨手機共享帳本"); return; }
+    return copy(location.href);
+  }
+  if (name === "record-menu") {
+    const id = target.dataset.id;
+    const ex = state.expenses.find(x => x.id === id);
+    if (!ex) return;
+    const answer = window.prompt(`「${ex.note}」\n輸入 1 編輯、2 刪除，或取消`, "1");
+    if (answer === "1") return openExpense(id);
+    if (answer === "2" && window.confirm(`確定刪除「${ex.note}」？此操作會同步影響其他旅伴。`)) {
+      try { await state.store.deleteExpense(state.roomId, id); toast("✓ 紀錄已刪除"); } catch (err) { errorMessage(err); }
+    }
+  }
+}
+function attachEvents() {
+  document.addEventListener("click", event => {
+    const tab = event.target.closest("[data-tab]");
+    if (tab) { state.tab = tab.dataset.tab; render(); return; }
+    const btn = event.target.closest("[data-action]");
+    if (btn) action(btn).catch?.(errorMessage);
+  });
+  $("#expense-form").addEventListener("submit", saveExpense);
+  $("#settings-form").addEventListener("submit", saveSettings);
+  $("#expense-form").addEventListener("change", e => {
+    if (e.target.name === "splitType" || e.target.name === "shareMember" || e.target.name === "currency") buildSplitFields();
+    else updatePreview();
+  });
+  $("#expense-form").addEventListener("input", e => {
+    // Exact-value allocation defaults depend on amount; refresh when amount changes.
+    if (e.target.name === "amount" && $("#expense-form").querySelector('[name="splitType"]:checked')?.value === "exact") buildSplitFields();
+    else updatePreview();
+  });
+}
+attachEvents();
+start();
+
+</script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <a href="./" class="brand" aria-label="Seoul Split 首頁"><span class="brand-symbol">S<span>✳</span></span><span>SEOUL <b>SPLIT</b><small>TRAVEL EXPENSES</small></span></a>
+      <div class="header-actions"><span id="sync-status" class="sync-pill">⏳ 載入中</span><button class="icon-btn" data-action="settings" title="旅程設定" aria-label="旅程設定">⚙</button></div>
+    </header>
+    <div id="mode-banner" class="mode-banner" hidden></div>
+    <section class="hero">
+      <div class="hero-decoration deco1"></div><div class="hero-decoration deco2"></div>
+      <div class="hero-top"><span class="hero-kicker">✦ OUR SEOUL MEMORY</span><span class="flight">TAIPEI <span>✈</span> SEOUL</span></div>
+      <h1 id="trip-title">三個人的首爾旅行</h1>
+      <p>一起玩、各自付，最後一次結清 ♡</p>
+      <div class="hero-bottom"><div class="hero-avatars" id="hero-avatars"></div><button class="share-btn" data-action="invite">↗ 邀請旅伴</button></div>
+    </section>
+    <section id="stats" class="stats" aria-label="旅費摘要"></section>
+    <div class="toolbar"><div class="view-tabs" role="tablist"><button class="active" data-tab="overview" role="tab" aria-selected="true">旅費概覽</button><button data-tab="records" role="tab" aria-selected="false">消費明細</button><button data-tab="settlement" role="tab" aria-selected="false">結算清單</button></div><button class="desktop-add primary-btn" data-action="add">＋ 新增消費</button></div>
+    <main id="view" aria-live="polite"><div class="loading">正在準備旅行帳本…</div></main>
+    <footer class="footer">MADE FOR YOUR SEOUL DAYS · 精確計帳以台幣分為基準</footer>
+  </div>
+  <button class="floating-add" data-action="add" aria-label="新增一筆消費">＋</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="expense-dialog" class="sheet-dialog">
+    <form id="expense-form" class="dialog-form">
+      <div class="dialog-heading"><div><div class="eyebrow">TRIP EXPENSE</div><h2 id="expense-form-title">新增一筆消費</h2></div><button type="button" class="close-btn" data-action="close-expense" aria-label="關閉">✕</button></div>
+      <div class="dialog-scroll">
+        <div class="form-grid">
+          <label class="full"><span>消費項目</span><input name="note" maxlength="70" placeholder="例如：弘大烤肉晚餐" required></label>
+          <label><span>日期</span><input name="date" type="date" required></label>
+          <label><span>消費分類</span><select name="category"><option value="food">🍜 餐飲</option><option value="transport">🚕 交通</option><option value="hotel">🏨 住宿</option><option value="shopping">🛍️ 購物</option><option value="activity">🎟️ 門票景點</option><option value="other">🧾 其他</option></select></label>
+          <label class="amount-field"><span>消費金額</span><input name="amount" inputmode="decimal" type="number" min="0.01" step="any" placeholder="例如 60000" required></label>
+          <label><span>消費幣別</span><select name="currency"><option value="KRW">🇰🇷 韓元 KRW</option><option value="TWD">🇹🇼 台幣 TWD</option></select></label>
+          <label><span>誰先付款？</span><select name="payerId" id="expense-payer"></select></label>
+          <label><span>這筆匯率（1 韓元＝台幣）</span><input name="rateApplied" type="number" min="0.000001" max="9.999" step="any" inputmode="decimal" required></label>
+        </div>
+        <div class="split-section"><div class="section-title"><h3>由誰分攤？</h3><small>可以只選其中 1～2 人</small></div><div class="member-checks" id="member-checks"></div>
+          <h3 class="split-mode-title">怎麼分？</h3>
+          <div class="segmented"><label><input type="radio" name="splitType" value="equal" checked><span>平均分攤</span></label><label><input type="radio" name="splitType" value="percent"><span>依百分比</span></label><label><input type="radio" name="splitType" value="exact"><span>指定金額</span></label></div>
+          <div id="split-fields" class="split-fields"></div><div id="split-preview" class="split-preview">輸入金額後顯示每人分攤金額</div>
+        </div>
+      </div>
+      <div class="dialog-footer"><button class="outline-btn" type="button" data-action="close-expense">取消</button><button class="primary-btn" type="submit" id="expense-submit">儲存消費</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog" class="sheet-dialog settings-dialog">
+    <form id="settings-form" class="dialog-form">
+      <div class="dialog-heading"><div><div class="eyebrow">YOUR TRIP</div><h2>旅程設定</h2></div><button type="button" class="close-btn" data-action="close-settings" aria-label="關閉">✕</button></div>
+      <div class="dialog-scroll"><p class="helper">三位旅伴共用同一個帳本。修改姓名及匯率後，其他已連線的裝置會同步更新。</p>
+        <label class="form-label"><span>旅程名稱</span><input name="title" maxlength="45" required></label>
+        <div class="members-editor"><h3>旅伴名稱</h3><label><span>旅伴 1</span><input name="member-a" maxlength="20" required></label><label><span>旅伴 2</span><input name="member-b" maxlength="20" required></label><label><span>旅伴 3</span><input name="member-c" maxlength="20" required></label></div>
+        <label class="form-label"><span>預設匯率：1 韓元 = 幾元台幣？</span><input name="fxRate" type="number" step="any" min="0.000001" max="9.999" required></label>
+        <p class="helper">此為手動設定的參考匯率，<strong>不是即時匯率</strong>。每筆消費會保存輸入時的匯率，日後修改預設匯率不會改動既有帳目。</p>
+        <div class="identity-box"><label for="identity-choice">這支手機預設由誰記帳？</label><select id="identity-choice" name="identityChoice"></select></div>
+      </div>
+      <div class="dialog-footer"><button class="outline-btn" type="button" data-action="close-settings">取消</button><button class="primary-btn" type="submit">儲存設定</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
